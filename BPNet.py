@@ -1,3 +1,4 @@
+#using dataset MNIST
 import tensorflow as tf
 import pandas as pd
 import numpy as np
@@ -5,6 +6,7 @@ from tensorflow.keras import Sequential,layers,losses,optimizers
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
+#preprocessing
 def preProcess(dataset):
     inputData=pd.read_csv(dataset,header=None)
 
@@ -24,6 +26,7 @@ def preProcess(dataset):
                 target[i][j]=0.99
     return feature,target
 
+#BP network constructing
 def BPNet3Layers(featureTrain,targetTrain,featureTest,targetTest,trainData):
     network=Sequential([
         layers.Dense(784,activation='sigmoid'),
@@ -52,10 +55,6 @@ def BPNet3Layers(featureTrain,targetTrain,featureTest,targetTest,trainData):
                 if predict[i]==targetValue[i]:
                     accurate=accurate+1
             print("\n","accuracy:",accurate/totalLines)
-
-
-
-
 
 dataset1="mnist_train.csv"
 featureTrain,targetTrain=preProcess(dataset1)
