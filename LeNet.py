@@ -1,3 +1,4 @@
+#using dataset MNIST
 import pandas as pd
 import numpy as np
 import tensorflow as tf
@@ -5,7 +6,7 @@ from tensorflow.keras import Sequential,layers,losses,optimizers
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
-#数据预处理
+#preprocessing
 def preProcessData(dataset):
     inputData = pd.read_csv(dataset, header=None)
 
@@ -23,9 +24,9 @@ def preProcessData(dataset):
             target[i][j] = 0.01
             if inputData[i][0] == j:
                 target[i][j] = 0.99
-
     return feature,target
-#建立网络
+
+#LeNet constructing
 def LeNet(featureTrain,targetTrain,featureTest,targetTest,trainData):
     network=Sequential([
         layers.Conv2D(6,kernel_size=5,strides=1),
@@ -74,8 +75,3 @@ featureTest,targetTest=preProcessData(dataset2)
 print("train data:")
 print(trainData)
 LeNet(featureTrain,targetTrain,featureTest,targetTest,trainData)
-
-
-# array=np.array([[1,2,3,4],[4,5,6,7],[7,8,9,10]])
-# array=array.reshape((3,4))
-# print(array)
