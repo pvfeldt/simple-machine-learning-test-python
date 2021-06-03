@@ -9,7 +9,6 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 #preprocessing
 def preProcessData(dataset):
     inputData = pd.read_csv(dataset, header=None)
-
     inputData=np.array(inputData,dtype=float)
     feature=np.delete(inputData,0,1)
     for i in range(len(feature)):
@@ -17,7 +16,6 @@ def preProcessData(dataset):
             feature[i][j]=feature[i][j]/256
             if feature[i][j]==0:
                 feature[i][j]=0.01
-
     target = np.zeros((len(feature), 10))
     for i in range(len(feature)):
         for j in range(10):
