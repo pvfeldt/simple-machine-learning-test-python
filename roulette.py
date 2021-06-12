@@ -7,7 +7,7 @@ def roulette(probability):
         probabilityTmp += probability[i]
         probabilityTotal[i] = probabilityTmp
     randomNumber=np.random.rand()
-    result=0
+    result=1
     for i in range(1, len(probabilityTotal)):
         if randomNumber<probabilityTotal[0]:
             result=0
